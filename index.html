@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Check - Investment Research</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- PIN Lock Screen -->
+    <div id="pinScreen" class="pin-screen">
+      <div class="pin-box">
+        <h1>Signal Check</h1>
+        <p>Enter your PIN</p>
+        <input type="password" id="pinInput" placeholder="••••" maxlength="4">
+        <button onclick="checkPin()">Unlock</button>
+        <p class="small-text">Default PIN: 1234</p>
+      </div>
+    </div>
+
+    <!-- Main App (Hidden until PIN entered) -->
+    <div id="appContent" class="app-content hidden">
+      <header>
+        <h1>Signal Check</h1>
+        <button class="logout-btn" onclick="logout()">Lock</button>
+      </header>
+
+      <!-- Stock Search -->
+      <div class="search-section">
+        <input type="text" id="tickerInput" placeholder="Enter stock ticker (e.g., AAPL)" maxlength="5">
+        <button onclick="searchStock()">Analyze</button>
+      </div>
+
+      <!-- Results Section -->
+      <div id="results" class="results hidden">
+        <div class="stock-header">
+          <h2 id="stockName"></h2>
+          <p id="stockPrice" class="price"></p>
+        </div>
+
+        <!-- Signal Cards -->
+        <div class="signals-grid">
+          <!-- Trend Signal -->
+          <div class="signal-card">
+            <h3>Trend</h3>
+            <div id="trendSignal" class="signal-value"></div>
+            <p id="trendDetails" class="signal-details"></p>
+          </div>
+
+          <!-- Momentum Signal -->
+          <div class="signal-card">
+            <h3>Momentum (RSI)</h3>
+            <div id="momentumSignal" class="signal-value"></div>
+            <p id="momentumDetails" class="signal-details"></p>
+          </div>
+
+          <!-- Sentiment Signal -->
+          <div class="signal-card">
+            <h3>News Sentiment</h3>
+            <div id="sentimentSignal" class="signal-value"></div>
+            <p id="sentimentDetails" class="signal-details"></p>
+          </div>
+        </div>
+
+        <!-- Overall Recommendation -->
+        <div class="recommendation-box">
+          <h3>Overall Signal</h3>
+          <div id="recommendation" class="recommendation"></div>
+          <p id="timeHorizon" class="time-horizon"></p>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+          <p><strong>⚠️ Disclaimer:</strong> This is a simple rules-based estimate, not financial advice. Past performance doesn't guarantee future results. Always do your own research before investing.</p>
+        </div>
+
+        <!-- News Headlines -->
+        <div class="news-section">
+          <h3>Recent News</h3>
+          <div id="newsList" class="news-list"></div>
+        </div>
+
+        <!-- AI Assistant -->
+        <div class="ai-section">
+          <h3>Ask the AI Assistant</h3>
+          <p class="ai-info">Powered by Google Gemini (Free)</p>
+          <div id="chatHistory" class="chat-history"></div>
+          <div class="ai-input-group">
+            <input type="text" id="aiQuestion" placeholder="Ask about this stock...">
+            <button onclick="askAI()">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- API Keys Setup -->
+      <div class="settings-section">
+        <h3>API Keys (Saved Only on Your Device)</h3>
+        <div class="api-key-input">
+          <label>Alpha Vantage Key (free from alphavantage.co)</label>
+          <input type="password" id="alphaVantageKey" placeholder="Paste your key">
+        </div>
+        <div class="api-key-input">
+          <label>NewsAPI Key (free from newsapi.org)</label>
+          <input type="password" id="newsApiKey" placeholder="Paste your key">
+        </div>
+        <div class="api-key-input">
+          <label>Google Gemini API Key (free from makersuite.google.com)</label>
+          <input type="password" id="geminiKey" placeholder="Paste your key">
+        </div>
+        <button onclick="saveApiKeys()">Save Keys Locally</button>
+        <p class="key-note">✓ Keys are stored only on your device, never uploaded</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
